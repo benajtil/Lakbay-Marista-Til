@@ -1,3 +1,32 @@
+// script.js
+
+// Function to handle form submission
+function submitReview() {
+    // Get values from form fields
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var rating = document.getElementById('rating').value;
+    var comment = document.getElementById('comment').value;
+
+    // Create an XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Define the request parameters
+    xhr.open('POST', 'submit_rating.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Set up the callback function
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            alert(xhr.responseText); // Display response from server
+        } else {
+            alert('Request failed. Status code: ' + xhr.status);
+        }
+    };
+
+    // Send the request
+    xhr.send('name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&rating=' + encodeURIComponent(rating) + '&comment=' + encodeURIComponent(comment));
+}
 const bars = document.querySelector(".bar"),
 close = document.querySelector(".close"),
 menu = document.querySelector(".menu");
@@ -109,4 +138,6 @@ galleryAnimation(".destinations .gallery", [".destinations .gallery .box1",".des
 galleryAnimation(".featured .gallery", [".featured .gallery .box1",".featured .gallery .box2",".featured .gallery .box3",".featured .gallery .box4"])
 
 galleryAnimation(".feedback .voices", [".feedback .voices .box1",".feedback .voices .box2",".feedback .voices .box3",".feedback .voices .box4",".feedback .voices .box5",".feedback .voices .box6"])
+
+
 
